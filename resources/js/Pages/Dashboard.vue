@@ -6,6 +6,8 @@ import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
     notes: Array,
+    summ: Number,
+    
 });
 
 console.log('notes',props.notes);
@@ -79,7 +81,7 @@ const createNote = () => {
 
 // Datos de ejemplo - en una aplicación real vendrían del backend
 const stats = ref([
-    { name: 'Notas totales', value: '24', change: '+12%', changeType: 'positive' },
+    { name: 'Notas totales', value: props.summ },
     { name: 'Carpetas', value: '8', change: '+3', changeType: 'positive' },
     { name: 'Etiquetas', value: '15', change: '+5', changeType: 'positive' },
     { name: 'Notas esta semana', value: '7', change: '+2', changeType: 'positive' },

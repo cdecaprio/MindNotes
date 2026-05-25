@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'notes' => auth()->user()->notes()->latest()->get()
+        'notes' => auth()->user()->notes()->latest()->get(),
+        'summ' => auth()->user()->notes()->count(),
+        //'carpetas' => auth()->user()->folders()->count(),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -27,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     // Rutas para notas
-    Route::post('notes', [NotesController::class, 'store'])->name('notes.store');
+    Route::post('/notes', [NotesController::class, 'store'])->name('notes.store');
 });
 
 require __DIR__.'/auth.php';

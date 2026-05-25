@@ -82,4 +82,13 @@ class NotesController extends Controller
 
         return redirect()->back()->with('success', 'Nota eliminada correctamente');
     }
+
+    public function summ(notes $note)
+    {
+        $this->authorize('summ', $note);
+        $summary = $note->summ();
+        return Inertia::render('Notes/summ', [
+            'summ' => $summ
+        ]);
+    }
 }
